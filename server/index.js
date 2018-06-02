@@ -6,6 +6,7 @@ require('dotenv').config();
 const app = express();
 // var cloud = require('../api/cloud-vision');
 const db = require('../database-mysql/index');
+const cloudVision = require('../api/cloud-vision.js');
 
 app.use(bodyParser.json());
 
@@ -19,8 +20,18 @@ app.get('/home', (req, res) => {
 });
 
 app.post('/submit', (req, res) => {
-  db.save('some labels...', req.body.image_url, req.body.location);
-  res.send(200);
+  cloudVision.getLabels(req.body.image_url)
+    .then((results) => {
+      // pull label with the highest detection score
+      let imageLabel = results.data.responses[0].webDetection.webEntities[0].description;
+      console.log(imageLabel);
+      db.save('some labels...', req.body.image_url, imageLabel)
+      res.status(200).send('Submit successful');
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(err);
+    });
 });
 
 // app.post('/login', function(req, res) {
