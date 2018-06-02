@@ -1,14 +1,22 @@
 var mysql = require('mysql');
+require('dotenv').config();
 
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'test'
+  host     : process.env.MYSQL_HOST,
+  user     : process.env.MYSQL_USER,
+  password : process.env.MYSQL_PASSWORD,
+  database : 'greenfield'
 });
 
+// var connection = mysql.createConnection({
+//   host     : 'localhost',
+//   user     : 'root',
+//   password : '',
+//   database : 'greenfield'
+// });
+
 var selectAll = function(callback) {
-  connection.query('SELECT * FROM items', function(err, results) {
+  connection.query('SELECT * FROM pictures', function(err, results) {
     if(err) {
       callback(err);
     } else {
@@ -19,7 +27,7 @@ var selectAll = function(callback) {
 
 var save = (labels, image_url) => {
   connection.query(
-    `INSERT INTO items (labels, image_url) VALUES ('${labels}', '${image_url}')`, 
+    `INSERT INTO pictures (labels, image_url) VALUES ('${labels}', '${image_url}')`, 
     function(err, results) {
     if (err) {
       console.log(err);
