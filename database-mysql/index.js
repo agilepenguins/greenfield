@@ -1,11 +1,11 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
 require('dotenv').config();
 
-var connection = mysql.createConnection({
-  host     : process.env.MYSQL_HOST,
-  user     : process.env.MYSQL_USER,
-  password : process.env.MYSQL_PASSWORD,
-  database : 'greenfield'
+let connection = mysql.createConnection({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: 'greenfield',
 });
 
 // var connection = mysql.createConnection({
@@ -15,9 +15,9 @@ var connection = mysql.createConnection({
 //   database : 'greenfield'
 // });
 
-var selectAll = function(callback) {
-  connection.query('SELECT * FROM pictures', function(err, results) {
-    if(err) {
+let selectAll = function (callback) {
+  connection.query('SELECT * FROM pictures', (err, results) => {
+    if (err) {
       callback(err);
     } else {
       callback(results);
@@ -25,17 +25,18 @@ var selectAll = function(callback) {
   });
 };
 
-var save = (labels, image_url) => {
+let save = (labels, image_url) => {
   connection.query(
-    `INSERT INTO pictures (labels, image_url) VALUES ('${labels}', '${image_url}')`, 
-    function(err, results) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Image saved!');
-    }
-  })
-}
+    `INSERT INTO pictures (labels, image_url) VALUES ('${labels}', '${image_url}')`,
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Image saved!');
+      }
+    },
+  );
+};
 
 module.exports.selectAll = selectAll;
 module.exports.save = save;

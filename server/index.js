@@ -1,24 +1,25 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var items = require('../database-mysql');
+const express = require('express');
+const bodyParser = require('body-parser');
+const items = require('../database-mysql');
 require('dotenv').config();
 
-var app = express();
+const app = express();
 // var cloud = require('../api/cloud-vision');
-var db = require('../database-mysql/index');
+const db = require('../database-mysql/index');
+
 app.use(bodyParser.json());
 
 
-app.use(express.static(__dirname + '/../react-client/dist'));
+app.use(express.static(`${__dirname  }/../react-client/dist`));
 
-app.get('/home', function (req, res) {
+app.get('/home', (req, res) => {
   db.selectAll((data) => {
     res.status(200);
     res.send(data);
   });
 });
 
-app.post('/submit', function(req, res) {
+app.post('/submit', (req, res) => {
   db.save('some labels...', req.body.image_url);
 });
 
@@ -31,7 +32,7 @@ app.post('/submit', function(req, res) {
 //     db.save(labels, image_url)});
 // });
 
-app.listen(3306, function() {
+app.listen(3306, () => {
   console.log('listening on port 3306!');
 });
 
