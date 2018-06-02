@@ -20,13 +20,19 @@ app.get('/home', (req, res) => {
 });
 
 app.post('/submit', (req, res) => {
+  let imageLabel; // description for the google image lookup eg 'Las Vegas'
+
+  // TODO Matt: protect/limit API calls
   cloudVision.getLabels(req.body.image_url)
     .then((results) => {
       // pull label with the highest detection score
-      let imageLabel = results.data.responses[0].webDetection.webEntities[0].description;
+      imageLabel = results.data.responses[0].webDetection.webEntities[0].description;
       console.log(imageLabel);
       db.save('some labels...', req.body.image_url, imageLabel)
       res.status(200).send('Submit successful');
+    })
+    .then(() => {
+      // Navira/Trevor:  yelp & hotels flights events etc goes here
     })
     .catch((err) => {
       console.log(err);
