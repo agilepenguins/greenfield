@@ -6,6 +6,7 @@ import {
     NavLink,
     HashRouter
   } from "react-router-dom";
+import axios from 'axios';
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -19,17 +20,28 @@ class Homepage extends React.Component {
   }
 
   componentDidMount() {
-    $.ajax({
-      method: 'GET',
-      url: '/home',
-      contentType: "application/json",
-      dataType: "HTML"
-    }).done((response) => {
+    axios.get('/home')
+    .then((response) => {
       this.setState({
-        labels: JSON.parse(response)
-      });
-      console.log('Finished GETTING from server - clientside');
-    });
+        labels: response.data
+      })
+      console.log('finished GETTING from server - clientside');
+    })
+    .catch((error) => {
+      console.log('ERROR: ', error)
+    })
+
+    // $.ajax({
+    //   method: 'GET',
+    //   url: '/home',
+    //   contentType: "application/json",
+    //   dataType: "HTML"
+    // }).done((response) => {
+    //   this.setState({
+    //     labels: JSON.parse(response)
+    //   });
+    //   console.log('Finished GETTING from server - clientside');
+    // });
   }
 
   onChangeURL(e) {
@@ -38,17 +50,26 @@ class Homepage extends React.Component {
   }
 
   onSubmit(e) {
-    let data = JSON.stringify({image_url: this.state.image_url});
-    $.ajax({
-      method: 'POST',
-      url: '/submit',
-      contentType: 'application/json',
-      data: data
-    })
-    .done((response) => {
+    let data = {image_url: this.state.image_url};
+    axios.post('/submit', data)
+    .then((response) => {
       console.log(`Passing request from front-end...`);
       window.location.reload();
-    });
+    })
+    .catch((error) => {
+      console.log('SUBMIT NOT WORKING', error)
+    })
+
+    // $.ajax({
+    //   method: 'POST',
+    //   url: '/submit',
+    //   contentType: 'application/json',
+    //   data: data
+    // })
+    // .done((response) => {
+    //   console.log(`Passing request from front-end...`);
+    //   window.location.reload();
+    // });
   }
 
   render () {
@@ -62,8 +83,8 @@ class Homepage extends React.Component {
       <br/>
       <div className="grid-container">
         { 
-          this.state.labels.map(entry => {
-            return <div className="grid-item">{`Labels: ${entry.labels}`}<br/><a href={entry.image_url}><img className="pic" src={entry.image_url}/></a></div>
+          this.state.labels.map((entry, index) => {
+            return <div className="grid-item" key={index}>{`Labels: ${entry.labels}`}<br/><a href={entry.image_url}><img className="pic" src={entry.image_url}/></a></div>
           })
         }
         </div>
