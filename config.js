@@ -1,3 +1,3 @@
 module.exports = {
-    TOKEN: 'API_TOKEN_HERE'
-  };
+  TOKEN: 'API_TOKEN_HERE',
+};

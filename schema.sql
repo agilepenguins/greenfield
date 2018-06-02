@@ -1,13 +1,14 @@
-DROP DATABASE IF EXISTS greenfield;
+-- DROP DATABASE IF EXISTS greenfield;
 
-CREATE DATABASE greenfield;
+-- CREATE DATABASE greenfield;
 
-USE greenfield;
+-- USE greenfield;
 
 CREATE TABLE pictures (
   ID int NOT NULL AUTO_INCREMENT,
   labels VARCHAR(255) NOT NULL,
   image_url VARCHAR(255) NOT NULL,
+  location VARCHAR(255) NOT NULL,
   PRIMARY KEY (ID)
 );
 

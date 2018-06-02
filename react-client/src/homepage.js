@@ -14,8 +14,10 @@ class Homepage extends React.Component {
     this.state = {
       labels: ['empty'],
       image_url: '',
+      location: '',
     };
     this.onChangeURL = this.onChangeURL.bind(this);
+    this.onChangeLocation = this.onChangeLocation.bind(this);    
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -30,27 +32,18 @@ class Homepage extends React.Component {
       .catch((error) => {
         console.log('ERROR: ', error);
       });
-
-    // $.ajax({
-    //   method: 'GET',
-    //   url: '/home',
-    //   contentType: "application/json",
-    //   dataType: "HTML"
-    // }).done((response) => {
-    //   this.setState({
-    //     labels: JSON.parse(response)
-    //   });
-    //   console.log('Finished GETTING from server - clientside');
-    // });
   }
 
   onChangeURL(e) {
     this.setState({ image_url: e.target.value });
-    console.log(this.state.image_url);
+  }
+
+  onChangeLocation(e) {
+    this.setState({ location: e.target.value });
   }
 
   onSubmit(e) {
-    let data = { image_url: this.state.image_url };
+    let data = { image_url: this.state.image_url, location: this.state.location };
     axios.post('/submit', data)
       .then((response) => {
         console.log('Passing request from front-end...');
@@ -59,17 +52,6 @@ class Homepage extends React.Component {
       .catch((error) => {
         console.log('SUBMIT NOT WORKING', error);
       });
-
-    // $.ajax({
-    //   method: 'POST',
-    //   url: '/submit',
-    //   contentType: 'application/json',
-    //   data: data
-    // })
-    // .done((response) => {
-    //   console.log(`Passing request from front-end...`);
-    //   window.location.reload();
-    // });
   }
 
   render() {
@@ -77,7 +59,10 @@ class Homepage extends React.Component {
     <div>
       <h1>A picture is worth a thousand words...</h1>
       <form>
-        <input onChange={this.onChangeURL}></input>
+        <p>Image URL</p><b/>
+        <input onChange={this.onChangeURL}></input><b/>
+        <p>Location String for testing</p><b/>
+        <input onChange={this.onChangeLocation}></input>
         <input onClick={this.onSubmit} type="submit" value="submit"/>
       </form>
       <br/>

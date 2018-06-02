@@ -3,25 +3,25 @@ const config = require('../config.js');
 // const cloud = require('path to cloud api');
 
 let getLabels = (image_url, callback) => {
-    
-    // {
-    //     "requests":[
-    //       {
-    //         "image":{
-    //           "source":{
-    //             "imageUri":
-    //               image_url
-    //           }
-    //         },
-    //         "features":[
-    //           {
-    //             "type":"LABEL_DETECTION",
-    //             "maxResults":1
-    //           }
-    //         ]
-    //       }
-    //     ]
-    //   }
+
+  // {
+  //     "requests":[
+  //       {
+  //         "image":{
+  //           "source":{
+  //             "imageUri":
+  //               image_url
+  //           }
+  //         },
+  //         "features":[
+  //           {
+  //             "type":"LABEL_DETECTION",
+  //             "maxResults":1
+  //           }
+  //         ]
+  //       }
+  //     ]
+  //   }
 
 //   let options = {
 //     url: image_url,
@@ -40,6 +40,6 @@ let getLabels = (image_url, callback) => {
 //     callback(parsedResponse, image_url);
 //     }
 // });
-}
+};
 
 module.exports.getLabels = getLabels;
