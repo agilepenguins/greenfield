@@ -60,8 +60,6 @@ class Homepage extends React.Component {
       <form>
         <p>Image URL</p><b/>
         <input onChange={this.onChangeURL}></input><b/>
-        <p>Location String for testing</p><b/>
-        <input onChange={this.onChangeLocation}></input>
         <input onClick={this.onSubmit} type="submit" value="submit"/>
       </form>
       <br/>
