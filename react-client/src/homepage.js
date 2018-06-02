@@ -12,7 +12,7 @@ class Homepage extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-        labels: [],
+        labels: ['empty'],
         image_url: ''
     }
     this.onChangeURL = this.onChangeURL.bind(this);
