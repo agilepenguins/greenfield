@@ -23,7 +23,7 @@ class App extends React.Component {
         <div>
           <div className="content">
             <Route exact path="/" component={Home}/>
-            <Route path="/homepage" component={Home}/>                                                                     
+            <Route path="/login" component={Login}/>                                                                     
           </div>
         </div>
         </HashRouter>
