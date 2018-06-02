@@ -17,7 +17,7 @@ class Homepage extends React.Component {
       location: '',
     };
     this.onChangeURL = this.onChangeURL.bind(this);
-    this.onChangeLocation = this.onChangeLocation.bind(this);    
+    this.onChangeLocation = this.onChangeLocation.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -68,7 +68,7 @@ class Homepage extends React.Component {
       <br/>
       <div className="grid-container">
         {
-          this.state.labels.map((entry, index) => <div className="grid-item" key={index}>{`Labels: ${entry.labels}`}<br/><a href={entry.image_url}><img className="pic" src={entry.image_url}/></a></div>)
+          this.state.labels.map((entry, index) => <div className="grid-item" key={index}>{`Location: ${entry.location}`}<br/><a href={entry.image_url}><img className="pic" src={entry.image_url}/></a></div>)
         }
         </div>
     </div>);
