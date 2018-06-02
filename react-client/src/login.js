@@ -6,6 +6,7 @@ import {
     NavLink,
     HashRouter
   } from "react-router-dom";
+import axios from 'axios';
 
 class Login extends React.Component {
   constructor(props) {
@@ -42,14 +43,23 @@ class Login extends React.Component {
   }
 
   onSubmit(e) {
-    $.ajax({
-      method: 'POST',
-      url: '/login',
-      contentType: 'application/json',
-      data: data
+    let data = e.target.value;
+    axios.post('/login', data)
+    .then((response) => {
+      console.log(data, 'is submitted');
     })
-    .done((response) => {
-    });
+    .catch((error) => {
+      console.log('login error: ', error)
+    })
+
+    // $.ajax({
+    //   method: 'POST',
+    //   url: '/login',
+    //   contentType: 'application/json',
+    //   data: data
+    // })
+    // .done((response) => {
+    // });
   }
 
   render () {

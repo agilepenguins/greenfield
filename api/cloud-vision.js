@@ -3,7 +3,7 @@ const config = require('../config.js');
 // const cloud = require('path to cloud api');
 
 let getLabels = (image_url, callback) => {
-
+    
     // {
     //     "requests":[
     //       {
