@@ -25,9 +25,9 @@ let selectAll = function (callback) {
   });
 };
 
-let save = (labels, image_url) => {
+let save = (labels, image_url, location) => {
   connection.query(
-    `INSERT INTO pictures (labels, image_url) VALUES ('${labels}', '${image_url}')`,
+    `INSERT INTO pictures (labels, image_url, location) VALUES ('${labels}', '${image_url}', '${location}')`,
     (err, results) => {
       if (err) {
         console.log(err);

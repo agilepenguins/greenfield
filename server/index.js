@@ -9,8 +9,7 @@ const db = require('../database-mysql/index');
 
 app.use(bodyParser.json());
 
-
-app.use(express.static(`${__dirname  }/../react-client/dist`));
+app.use(express.static(`${__dirname}/../react-client/dist`));
 
 app.get('/home', (req, res) => {
   db.selectAll((data) => {
@@ -20,7 +19,8 @@ app.get('/home', (req, res) => {
 });
 
 app.post('/submit', (req, res) => {
-  db.save('some labels...', req.body.image_url);
+  db.save('some labels...', req.body.image_url, req.body.location);
+  res.send(200);
 });
 
 // app.post('/login', function(req, res) {
