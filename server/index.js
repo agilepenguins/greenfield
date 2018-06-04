@@ -8,6 +8,7 @@ const app = express();
 const db = require('../database-mysql/index');
 const cloudVision = require('../api/cloud-vision.js');
 const relatedImages = require('../api/related-images.js');
+const yelpFusion = require('../api/yelp-fusion.js')
 
 app.use(bodyParser.json());
 
@@ -44,7 +45,9 @@ app.post('/submit', (req, res) => {
       res.status(200).send('Submit successful');
     })
     .then(() => {
-      // Navira/Trevor:  yelp & hotels flights events etc goes here
+      yelpFusion.getRestaurantRecommendations(imageLabel, (body) => {
+        res.send(body);
+      });
     })
     .catch((err) => {
       console.log(err);
