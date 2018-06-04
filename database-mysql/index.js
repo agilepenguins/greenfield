@@ -6,7 +6,7 @@ let connection = mysql.createConnection({
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
   database: 'greenfield',
-});
+})
 
 // var connection = mysql.createConnection({
 //   host     : 'localhost',
@@ -25,9 +25,10 @@ let selectAll = function (callback) {
   });
 };
 
-let save = (labels, image_url, location) => {
+let save = (labels, image_url, location, related) => {
   connection.query(
-    `INSERT INTO pictures (labels, image_url, location) VALUES ('${labels}', '${image_url}', '${location}')`,
+    `INSERT INTO pictures (labels, image_url, location, related_images) 
+    VALUES ('${labels}', '${image_url}', '${location}', '${related}')`,
     (err, results) => {
       if (err) {
         console.log(err);

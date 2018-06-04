@@ -7,12 +7,14 @@ let getRestaurantRecommendations = (location, callback) => {
   const options = {
     method: 'GET',
     url: 'https://api.yelp.com/v3/businesses/search',
-    qs: { location },
-    form:
+    qs: { 
+      location,
+      sort_by: 'distance',
+      limit: 5 
+    },
+    headers:
       {
-        grant_type: 'client_credentials',
-        client_id: process.env.Client_id,
-        client_secret: process.env.API_key,
+        Authorization: `Bearer ${process.env.API_key}`
       },
   };
 

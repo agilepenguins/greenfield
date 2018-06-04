@@ -1,4 +1,3 @@
-const request = require('request');
 const config = require('../config.js');
 const axios = require('axios');
 require('dotenv').config();

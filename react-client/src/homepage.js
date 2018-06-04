@@ -43,14 +43,19 @@ class Homepage extends React.Component {
 
   onSubmit(e) {
     let data = { image_url: this.state.image_url, location: this.state.location };
-    axios.post('/submit', data)
-      .then((response) => {
-        console.log('Passing request from front-end...');
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.log('SUBMIT NOT WORKING', error);
-      });
+    console.log('APologies', data)
+    if (data.image_url) {
+      axios.post('/submit', data)
+        .then((response) => {
+          console.log('Passing request from front-end...');
+          //window.location.reload();
+        })
+        .catch((error) => {
+          console.log('SUBMIT NOT WORKING', error);
+        });
+    } else {
+      alert('Image URL was empty, try again');
+    }
   }
 
   render() {
