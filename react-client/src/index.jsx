@@ -9,6 +9,8 @@ import {
 
 import Home from './homepage';
 import Login from './login';
+import UserPage from './userpage';
+import PicDetailsPage from './picdetails';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,13 +22,13 @@ class App extends React.Component {
   render() {
     return (
       <HashRouter>
-        <div>
-          <div className="content">
-            <Route exact path="/" component={Home}/>
-            <Route path="/login" component={Login}/>
-          </div>
+        <div className="content">
+          <Route exact path="/" component={Home}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/userpage" component={UserPage}/>
+          <Route path="/picdetails" component={PicDetailsPage}/>
         </div>
-        </HashRouter>
+      </HashRouter>
     );
   }
 }

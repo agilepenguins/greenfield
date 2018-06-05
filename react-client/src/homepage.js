@@ -6,6 +6,7 @@ import {
   HashRouter,
 } from 'react-router-dom';
 import axios from 'axios';
+// import styles from './homepage.css';
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -43,12 +44,12 @@ class Homepage extends React.Component {
 
   onSubmit(e) {
     let data = { image_url: this.state.image_url, location: this.state.location };
-    console.log('APologies', data)
     if (data.image_url) {
       axios.post('/submit', data)
         .then((response) => {
+          console.log('Response from server', JSON.stringify(response.data));
           console.log('Passing request from front-end...');
-          //window.location.reload();
+          window.location.reload();
         })
         .catch((error) => {
           console.log('SUBMIT NOT WORKING', error);
@@ -61,7 +62,6 @@ class Homepage extends React.Component {
   render() {
     return (
     <div>
-      <h1>A picture is worth a thousand words...</h1>
       <form>
         <p>Image URL</p><b/>
         <input onChange={this.onChangeURL}></input><b/>

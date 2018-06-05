@@ -8,7 +8,7 @@ const app = express();
 const db = require('../database-mysql/index');
 const cloudVision = require('../api/cloud-vision.js');
 const relatedImages = require('../api/related-images.js');
-const yelpFusion = require('../api/yelp-fusion.js')
+const yelpFusion = require('../api/yelp-fusion.js');
 
 app.use(bodyParser.json());
 
@@ -42,11 +42,12 @@ app.post('/submit', (req, res) => {
       let imageUrls = relatedResults.data.items.map(item => item.link);
       console.log('Discovered Related: ', JSON.stringify(imageUrls));
       db.save('some labels...', req.body.image_url, imageLabel, JSON.stringify(imageUrls));
-      res.status(200).send('Submit successful');
     })
     .then(() => {
+      console.log('searching yelp results!!!!!!!');
       yelpFusion.getRestaurantRecommendations(imageLabel, (body) => {
-        res.send(body);
+        console.log('here is the body in server', body);
+        res.status(200).send(body);
       });
     })
     .catch((err) => {
