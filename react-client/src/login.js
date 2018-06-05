@@ -21,17 +21,6 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
-    // $.ajax({
-    //   method: 'GET',
-    //   url: '/home',
-    //   contentType: "application/json",
-    //   dataType: "HTML"
-    // }).done((response) => {
-    //   this.setState({
-    //     labels: JSON.parse(response)
-    //   });
-    //   console.log('Finished GETTING from server - clientside');
-    // });
   }
 
   onChangeUsername(e) {
@@ -51,20 +40,11 @@ class Login extends React.Component {
       .catch((error) => {
         console.log('login error: ', error);
       });
-
-    // $.ajax({
-    //   method: 'POST',
-    //   url: '/login',
-    //   contentType: 'application/json',
-    //   data: data
-    // })
-    // .done((response) => {
-    // });
   }
 
   render() {
     return (
-    <div>
+    <div className="loginbody">
       <h1>Login</h1>
       <form>
         <input onChange={this.onChangeUsername}></input>

@@ -6,6 +6,7 @@ import {
   HashRouter,
 } from 'react-router-dom';
 import axios from 'axios';
+// import styles from './homepage.css';
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -60,7 +61,6 @@ class Homepage extends React.Component {
   render() {
     return (
     <div>
-      <h1>A picture is worth a thousand words...</h1>
       <form>
         <p>Image URL</p><b/>
         <input onChange={this.onChangeURL}></input><b/>
