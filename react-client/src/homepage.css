@@ -1,9 +1,0 @@
-.pic {
-    height: 400px;
-    width: 400px
-  }
-  .grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    padding: 15px
-  }
