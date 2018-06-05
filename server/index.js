@@ -4,7 +4,6 @@ const items = require('../database-mysql');
 require('dotenv').config();
 
 const app = express();
-// var cloud = require('../api/cloud-vision');
 const db = require('../database-mysql/index');
 const cloudVision = require('../api/cloud-vision.js');
 const relatedImages = require('../api/related-images.js');
@@ -56,14 +55,15 @@ app.post('/submit', (req, res) => {
     });
 });
 
+// NEED TO ADD FUNCTIONALITY
 // app.post('/login', function(req, res) {
 //   res.redirect('/home');
 // })
 
-// app.post('/submit', function (req, res) {
-//   cloud.getLabels(req.body.image_url, (labels, image_url) => {
-//     db.save(labels, image_url)});
-// });
+// NEED TO ADD FUNCTIONALITY
+// app.post('/signup', function(req, res) {
+//   res.redirect('/home');
+// })
 
 app.listen(3306, () => {
   console.log('listening on port 3306!');

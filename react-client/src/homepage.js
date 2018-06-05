@@ -6,7 +6,6 @@ import {
   HashRouter,
 } from 'react-router-dom';
 import axios from 'axios';
-// import styles from './homepage.css';
 
 class Homepage extends React.Component {
   constructor(props) {
