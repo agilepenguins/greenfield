@@ -47,6 +47,7 @@ class Homepage extends React.Component {
     if (data.image_url) {
       axios.post('/submit', data)
         .then((response) => {
+          console.log('Response from server', JSON.stringify(response.data));
           console.log('Passing request from front-end...');
           window.location.reload();
         })
