@@ -1,0 +1,13 @@
+/* html {
+  background-image: url("https://i.imgur.com/kCZb3U7.jpg");
+  background-size: 100%
+} */
+.pic {
+  height: 400px;
+  width: 400px
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 15px
+}
