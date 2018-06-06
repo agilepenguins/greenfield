@@ -65,7 +65,7 @@ app.post('/submit', (req, res) => {
 //   res.redirect('/home');
 // })
 
-app.listen(3306, () => {
+app.listen(process.env.PORT || 3306, () => {
   console.log('listening on port 3306!');
 });
 

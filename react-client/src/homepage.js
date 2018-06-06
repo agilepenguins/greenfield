@@ -4,8 +4,22 @@ import {
   Route,
   NavLink,
   HashRouter,
+  Link,
 } from 'react-router-dom';
 import axios from 'axios';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import { TextField } from '@material-ui/core';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -42,6 +56,7 @@ class Homepage extends React.Component {
   }
 
   onSubmit(e) {
+    console.log('searching');
     let data = { image_url: this.state.image_url, location: this.state.location };
     if (data.image_url) {
       axios.post('/submit', data)
@@ -61,17 +76,58 @@ class Homepage extends React.Component {
   render() {
     return (
     <div>
-      <form>
-        <p>Image URL</p><b/>
-        <input onChange={this.onChangeURL}></input><b/>
-        <input onClick={this.onSubmit} type="submit" value="submit"/>
-      </form>
-      <br/>
-      <div className="grid-container">
-        {
-          this.state.labels.map((entry, index) => <div className="grid-item" key={index}>{`Location: ${entry.location}`}<br/><a href={entry.image_url}><img className="pic" src={entry.image_url}/></a></div>)
-        }
+      <AppBar color="default">
+        <Toolbar>
+          <img className="appBarLogo" src="https://i.imgur.com/Y9EuxAX.png"/>
+          <TextField className="searchfield" onChange={this.onChangeURL} color="inherit" placeholder="Search Image URL" fullWidth></TextField>
+          <Button onClick={this.onSubmit} color="inherit">Search</Button>
+          <Button color="inherit">explore</Button>
+          <Button color="inherit">home</Button>
+          <Button color="inherit">Logout</Button>
+        </Toolbar>
+      </AppBar>
+      <div className="belowAppBar">
+
+        {/* <GridList cols={5} className="gridList">
+          {
+            this.state.labels.map((entry, index) =>
+            <GridListTile key={index}>
+                <a href={entry.image_url}><img className="pic" src={entry.image_url}/></a>
+                <GridListTileBar
+                title={`Location: ${entry.location}`}
+                titlePosition="top"
+                actionIcon={
+                  <IconButton className="starIcon">
+                    <StarBorderIcon />
+                  </IconButton>
+                }
+                actionPosition="left"
+                className="titleBar"/>
+            </GridListTile>)
+          }
+        </GridList> */}
+
+        <div className="grid-container">
+          {
+            this.state.labels.map((entry, index) =>
+            <div className="item" key={index}>
+            <Link to="/picdetails" query={{ testvalue: 'hello' }}><img className="pic" src={entry.image_url}/></Link>
+            </div>)
+          }
         </div>
+
+        {/* <div className="grid-container">
+          {
+            this.state.labels.map((entry, index) =>
+            <div className="item" key={index}>
+            <div className="content">{`Location: ${entry.location}`}<br/>
+            <a href={entry.image_url}><img className="pic" src={entry.image_url}/></a>
+            </div>
+            </div>)
+          }
+        </div> */}
+
+      </div>
     </div>);
   }
 }
