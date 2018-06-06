@@ -12,6 +12,7 @@ class PicDetailsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      testvalue: 'a',
     };
   }
 
@@ -21,7 +22,8 @@ class PicDetailsPage extends React.Component {
   render() {
     return (
     <div>
-        "This should be the picture details page, to be updated"
+      This is: {this.state.testvalue}<br/>
+      This should be the picture details page, to be updated
     </div>);
   }
 }

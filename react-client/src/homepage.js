@@ -88,7 +88,7 @@ class Homepage extends React.Component {
       </AppBar>
       <div className="belowAppBar">
 
-        {/* <GridList cols={3} className="gridList">
+        {/* <GridList cols={5} className="gridList">
           {
             this.state.labels.map((entry, index) =>
             <GridListTile key={index}>
@@ -111,7 +111,7 @@ class Homepage extends React.Component {
           {
             this.state.labels.map((entry, index) =>
             <div className="item" key={index}>
-            <Link to="/picdetails"><img className="pic" src={entry.image_url}/></Link>
+            <Link to="/picdetails" query={{ testvalue: 'hello' }}><img className="pic" src={entry.image_url}/></Link>
             </div>)
           }
         </div>
