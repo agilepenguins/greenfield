@@ -20,6 +20,16 @@ app.get('/home', (req, res) => {
   });
 });
 
+app.post('/details', (req, res) => {
+  if (!req.body.ID) {
+    res.status(400).status('Bad request: invalid image ID');
+  }
+  db.selectByID(req.body.ID, (data) => {
+    res.status(200);
+    res.send(data);
+  });
+});
+
 app.post('/submit', (req, res) => {
   let imageLabel; // description for the google image lookup eg 'Las Vegas'
 

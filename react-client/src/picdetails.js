@@ -14,21 +14,63 @@ class PicDetailsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedImageDataMock: ["http://tinastraveldeals.co.uk/wp-content/uploads/2018/05/LV1.jpg", "https://www.letsgo2.com/blog/wp-content/uploads/2013/09/mgm-grand-las-vegas.jpg", "http://oneworld.com.lb/cms/wp-content/uploads/2014/09/mgm11.jpg", "http://freepost.me/wp-content/uploads/2018/01/mgm-grand-standard-room-fresh-in-unique-one-bedroom-suite-las-vegas-on-within-tower-4.jpg", "http://oneworld.com.lb/cms/wp-content/uploads/2014/09/mgm21.jpg"]
+      id: this.props.match.params.id,
+      userLocation: { latitude: 30.3079827, longitude: -97.8934851 },
+      dbDetails: { ID: undefined, labels: undefined, location: '', related_images: '[]' },
     };
   }
 
+  // TODO: try using this in deployment to get user location
+  getLocation() {
+    const geolocation = navigator.geolocation;
+
+    const location = new Promise((resolve, reject) => {
+      if (!geolocation) {
+        reject(new Error('Not Supported'));
+      }
+
+      geolocation.getCurrentPosition((position) => {
+        resolve(position);
+      }, () => {
+        reject(new Error('Permission denied'));
+      });
+    });
+
+    location()
+      .then((result) => {
+        console.log(result); // should look like {latitude, longitude}
+        const { coords: { latitude, longitude } } = result;
+        this.setState({
+          userLocation: coords,
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
   componentDidMount() {
+    let data = { ID: this.state.id };
+    axios.post('/details', data)
+      .then((response) => {
+        this.setState({
+          dbDetails: response.data[0],
+        });
+        console.log('got pic details from db');
+      })
+      .catch((error) => {
+        console.log('ERROR: ', error);
+      });
   }
 
   render() {
     return (
     <div>
-        "This should be the picture details page, to be updated"
-        <EmbeddedMap userLocation={'Austin+TX'} destination={'Niagra+Falls'}/>
+        <h1>{this.state.dbDetails.location || 'Loading...'}</h1>
+        <EmbeddedMap userLocation={this.state.userLocation} 
+        destination={this.state.dbDetails.location.split(' ').join('+')}/>
         <div className="grid-container">
           {
-            this.state.relatedImageDataMock.map((entry, index) => <div className="grid-item" key={index}><img className="pic" src={entry} /></div>)
+            JSON.parse(this.state.dbDetails.related_images).map((entry, index) =>
+            <div className="grid-item" key={index}><a href={entry}><img className="pic" src={entry} /></a></div>)
           }
         </div>
     </div>);
