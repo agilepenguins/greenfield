@@ -1,9 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { compose, withProps, lifecycle } from 'recompose';
-import { withScriptjs, withGoogleMap, GoogleMap, DirectionsRenderer, Marker } from 'react-google-maps';
-
-let mapURLTest = 'https://www.google.com/maps/dir/?api=1&origin=Niagra+Falls+New+York&destination=Sydney+NSW+Australia';
+import MAPS_API_KEY from './config';
 
 const EmbeddedMap = props => (
     <div>
@@ -12,7 +8,7 @@ const EmbeddedMap = props => (
         height="450"
         frameBorder="0" style={{ border: '0' }}
         allowFullScreen
-        src={`https://www.google.com/maps/embed/v1/directions?key=(API KEY HERE)
+      src={`https://www.google.com/maps/embed/v1/directions?key=${MAPS_API_KEY}
         &origin=${props.userLocation}
         &destination=${props.destination}
         &mode=flying`} >

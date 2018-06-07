@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import $ from 'jquery';
 import {
   Route,
   NavLink,
@@ -9,14 +7,15 @@ import {
 import axios from 'axios';
 import EmbeddedMap from './map';
 
-
 class PicDetailsPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       id: this.props.match.params.id,
-      userLocation: { latitude: 30.3079827, longitude: -97.8934851 },
-      dbDetails: { ID: undefined, labels: undefined, location: '', related_images: '[]' },
+      userLocation: { latitude: 30.3079827, longitude: -97.8934851 }, // set to Austin, TX for testing
+      dbDetails: {
+        ID: undefined, labels: undefined, location: 'Loading...', related_images: '[]',
+      },
     };
   }
 
@@ -64,8 +63,8 @@ class PicDetailsPage extends React.Component {
   render() {
     return (
     <div>
-        <h1>{this.state.dbDetails.location || 'Loading...'}</h1>
-        <EmbeddedMap userLocation={this.state.userLocation} 
+        <h1>{this.state.dbDetails.location}</h1>
+        <EmbeddedMap userLocation={this.state.userLocation}
         destination={this.state.dbDetails.location.split(' ').join('+')}/>
         <div className="grid-container">
           {

@@ -8,7 +8,8 @@ let getRelated = (query) => {
     {
       params: {
         q: query,
-        num: '5',
+        num: '10',
+        filter: '1',
         imgSize: 'huge',
         searchType: 'image',
         key: process.env.CUSTOM_SEARCH_API_KEY,
