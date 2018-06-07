@@ -18,6 +18,16 @@ let selectAll = function (callback) {
   });
 };
 
+let selectByID = function (ID, callback) {
+  connection.query(`SELECT * FROM pictures WHERE id=${ID}`, (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(results);
+    }
+  });
+};
+
 let save = (labels, image_url, location, related) => {
   connection.query(
     `INSERT INTO pictures (labels, image_url, location, related_images) 
@@ -33,4 +43,5 @@ let save = (labels, image_url, location, related) => {
 };
 
 module.exports.selectAll = selectAll;
+module.exports.selectByID = selectByID;
 module.exports.save = save;

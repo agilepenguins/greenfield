@@ -26,7 +26,7 @@ class App extends React.Component {
           <Route exact path="/" component={Login}/>
           <Route path="/home" component={Home}/>
           <Route path="/userpage" component={UserPage}/>
-          <Route path="/picdetails" component={PicDetailsPage}/>
+          <Route path="/picdetails/:id" component={PicDetailsPage}/>
         </div>
       </HashRouter>
     );
