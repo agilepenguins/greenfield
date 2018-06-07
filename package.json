@@ -31,12 +31,14 @@
     "express": "^4.15.0",
     "jquery": "^3.1.1",
     "mysql": "^2.13.0",
+    "mysql2": "^1.5.3",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-google-maps": "^9.4.5",
     "react-router-dom": "^4.2.2",
     "recompose": "^0.27.1",
     "request": "^2.87.0",
+    "sequelize": "^4.37.10",
     "yelp-fusion": "^2.0.3"
   }
 }
