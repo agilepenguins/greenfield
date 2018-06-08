@@ -32,6 +32,7 @@ class Homepage extends React.Component {
     this.onChangeURL = this.onChangeURL.bind(this);
     this.onChangeLocation = this.onChangeLocation.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   componentDidMount() {
@@ -48,17 +49,26 @@ class Homepage extends React.Component {
   }
 
   onChangeURL(e) {
-    this.setState({ image_url: e.target.value });
+    // clean up image urls
+    let url = e.target.value.replace(/^(.+?\.(png|jpe?g|ashx)).*$/i, '$1');
+    this.setState({ image_url: url });
   }
 
   onChangeLocation(e) {
     this.setState({ location: e.target.value });
   }
 
-  onSubmit(e) {
+  handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.onSubmit();
+    }
+  }
+
+  onSubmit() {
     console.log('searching');
     let data = { image_url: this.state.image_url, location: this.state.location };
-    if (data.image_url) {
+    // basic input validation
+    if (data.image_url.match(/^(png|jpe?g|ashx)$/)) {
       axios.post('/submit', data)
         .then((response) => {
           console.log('Response from server', JSON.stringify(response.data));
@@ -69,7 +79,7 @@ class Homepage extends React.Component {
           console.log('SUBMIT NOT WORKING', error);
         });
     } else {
-      alert('Image URL was empty, try again');
+      alert('Invalid image URL, please try again');
     }
   }
 
@@ -79,7 +89,9 @@ class Homepage extends React.Component {
       <AppBar color="default">
         <Toolbar>
           <img className="appBarLogo" src="https://i.imgur.com/Y9EuxAX.png"/>
-          <TextField className="searchfield" onChange={this.onChangeURL} color="inherit" placeholder="Search Image URL" fullWidth></TextField>
+          <TextField className="searchfield" onChange={this.onChangeURL} value={this.state.image_url}
+           onKeyPress={this.handleKeyPress} color="inherit" placeholder="Search Image URL" fullWidth>
+           </TextField>
           <Button onClick={this.onSubmit} color="inherit">Search</Button>
           <Link to="/home"><Button color="default">explore</Button></Link>
           <Link to="/"><Button color="default">Logout</Button></Link>
