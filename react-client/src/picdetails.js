@@ -3,6 +3,7 @@ import {
   Route,
   NavLink,
   HashRouter,
+  Link,
 } from 'react-router-dom';
 import axios from 'axios';
 import EmbeddedMap from './map';
@@ -19,6 +20,9 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ImageGallery from 'react-image-gallery';
+import AppBar from '@material-ui/core/AppBar';
+import { Toolbar } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 class PicDetailsPage extends React.Component {
   
@@ -93,8 +97,19 @@ class PicDetailsPage extends React.Component {
     // ]
 
     return (
-    <div style={{width: '100%'}}>
-      <h1>{this.state.dbDetails.location}</h1>
+    <div style={{ width: '100%' }}>
+      <AppBar color="default">
+      <Toolbar>
+        <img className="appBarLogo" src="https://i.imgur.com/Y9EuxAX.png"/>
+        <p className="appLocation">{this.state.dbDetails.location}</p>
+        <div className="appBarButtons">
+          <Link to="/home"><Button color="default">explore</Button></Link>
+          <Link to="/"><Button color="default">Logout</Button></Link>
+        </div>
+      </Toolbar>
+      </AppBar>
+      <div className="belowAppBar">
+      {/* <h1>{this.state.dbDetails.location}</h1> */}
         <Grid container spacing={16} alignItems='center'>
 
           <Grid item xs={12}>
@@ -151,6 +166,7 @@ class PicDetailsPage extends React.Component {
 
 
         </Grid>
+        </div>
     </div>);
   }
 }

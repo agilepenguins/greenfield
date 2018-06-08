@@ -5,6 +5,7 @@ import {
   Route,
   NavLink,
   HashRouter,
+  Link,
 } from 'react-router-dom';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
@@ -53,8 +54,7 @@ class Signup extends React.Component {
         <img className="logo" src="https://i.imgur.com/Y9EuxAX.png"/><br/>
         <TextField className="username" onChange={this.onChangeUsername} placeholder="Username"></TextField><br/>
         <TextField className="password" onChange={this.onChangePassword} placeholder="Password"></TextField><br/>
-        <Button className="signupbutton" onClick={this.onSubmitSignup}>SIGN UP</Button><br/>
-
+        <Link to="/home"><Button className="signupbutton" onClick={this.onSubmitSignup}>SIGN UP</Button></Link>
       </div>
     </div>);
   }
