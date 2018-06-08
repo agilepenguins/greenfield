@@ -9,6 +9,7 @@ import {
 
 import Home from './homepage';
 import Login from './login';
+import Signup from './signup';
 import UserPage from './userpage';
 import PicDetailsPage from './picdetails';
 
@@ -24,6 +25,7 @@ class App extends React.Component {
       <HashRouter>
         <div className="content">
           <Route exact path="/" component={Login}/>
+          <Route path="/signup" component={Signup}/>          
           <Route path="/home" component={Home}/>
           <Route path="/userpage" component={UserPage}/>
           <Route path="/picdetails/:id" component={PicDetailsPage}/>
