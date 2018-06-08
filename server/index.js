@@ -14,9 +14,13 @@ app.use(bodyParser.json());
 app.use(express.static(`${__dirname}/../react-client/dist`));
 
 app.get('/home', (req, res) => {
-  db.selectAll((data) => {
-    res.status(200);
-    res.send(data);
+  db.selectAll((err, data) => {
+    if (err) {
+      console.log('Error in /home', err);
+      res.status(500).send('Server error occurred');
+    } else {
+      res.status(200).send(data);
+    }
   });
 });
 
@@ -24,9 +28,14 @@ app.post('/details', (req, res) => {
   if (!req.body.ID) {
     res.status(400).status('Bad request: invalid image ID');
   }
-  db.selectByID(req.body.ID, (data) => {
-    res.status(200);
-    res.send(data);
+  console.log(req.body.ID)
+  db.selectByID(req.body.ID, (err, data) => {
+    if (err) {
+      console.log('Error in /home');
+      res.status(500).send('Server error occurred');
+    } else {
+      res.status(200).send(data);
+    }
   });
 });
 
@@ -53,11 +62,12 @@ app.post('/submit', (req, res) => {
       db.save('some labels...', req.body.image_url, imageLabel, JSON.stringify(imageUrls));
     })
     .then(() => {
-      console.log('searching yelp results!!!!!!!');
-      yelpFusion.getRestaurantRecommendations(imageLabel, (body) => {
-        console.log('here is the body in server', body);
-        res.status(200).send(body);
-      });
+      // console.log('searching yelp results');
+      // yelpFusion.getRestaurantRecommendations(imageLabel, (body) => {
+      //   console.log('Yelp Results:', body);
+      //   res.status(200).send(body);
+      // });
+      res.status(200).send('Server work done');
     })
     .catch((err) => {
       console.log(err);

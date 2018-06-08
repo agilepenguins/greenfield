@@ -110,8 +110,8 @@ class Homepage extends React.Component {
         <div className="grid-container">
           {
             this.state.labels.map(entry =>
-            <div className="item" key={entry.ID}>
-            <Link to={`/picdetails/${entry.ID}`} ><img className="pic" src={entry.image_url}/></Link>
+            <div className="item" key={entry.id}>
+            <Link to={`/picdetails/${entry.id}`} ><img className="pic" src={entry.image_url}/></Link>
             </div>)
           }
         </div>
