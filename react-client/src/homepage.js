@@ -39,7 +39,7 @@ class Homepage extends React.Component {
     axios.get('/home')
       .then((response) => {
         this.setState({
-          labels: response.data,
+          labels: response.data.reverse(),
         });
         console.log('finished GETTING from server - clientside');
       })
@@ -68,7 +68,8 @@ class Homepage extends React.Component {
     console.log('searching');
     let data = { image_url: this.state.image_url, location: this.state.location };
     // basic input validation
-    if (data.image_url.match(/^(png|jpe?g|ashx)$/)) {
+    let ext = data.image_url.split('.').slice(-1)[0];
+    if (data.image_url && ext.match(/^(png|jpeg|jpg|ashx)$/)) {
       axios.post('/submit', data)
         .then((response) => {
           console.log('Response from server', JSON.stringify(response.data));
