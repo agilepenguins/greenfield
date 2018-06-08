@@ -6,8 +6,23 @@ import {
 } from 'react-router-dom';
 import axios from 'axios';
 import EmbeddedMap from './map';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ImageGallery from 'react-image-gallery';
 
 class PicDetailsPage extends React.Component {
+  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -61,19 +76,84 @@ class PicDetailsPage extends React.Component {
   }
 
   render() {
+    const images = JSON.parse(this.state.dbDetails.related_images).map(imgUrl => { return {original:imgUrl, thumbnail:imgUrl};});
+    // const images = [
+    //   {
+    //     original: 'http://tinastraveldeals.co.uk/wp-content/uploads/2018/05/LV1.jpg',
+    //     thumbnail: 'http://tinastraveldeals.co.uk/wp-content/uploads/2018/05/LV1.jpg',
+    //   },
+    //   {
+    //     original: 'https://www.letsgo2.com/blog/wp-content/uploads/2013/09/mgm-grand-las-vegas.jpg',
+    //     thumbnail: 'https://www.letsgo2.com/blog/wp-content/uploads/2013/09/mgm-grand-las-vegas.jpg'
+    //   },
+    //   {
+    //     original: 'http://oneworld.com.lb/cms/wp-content/uploads/2014/09/mgm11.jpg',
+    //     thumbnail: 'http://oneworld.com.lb/cms/wp-content/uploads/2014/09/mgm11.jpg'
+    //   }
+    // ]
+
     return (
-    <div>
-        <h1>{this.state.dbDetails.location}</h1>
-        <EmbeddedMap userLocation={this.state.userLocation}
-        destination={this.state.dbDetails.location.split(' ').join('+')}/>
-        <div className="grid-container">
-          {
-            JSON.parse(this.state.dbDetails.related_images).map((entry, index) =>
-            <div className="grid-item" key={index}><a href={entry}><img className="pic" src={entry} /></a></div>)
-          }
-        </div>
+    <div style={{width: '100%'}}>
+      <h1>{this.state.dbDetails.location}</h1>
+        <Grid container spacing={16} alignItems='center'>
+
+          <Grid item xs={12}>
+            <EmbeddedMap userLocation={this.state.userLocation}
+            destination={this.state.dbDetails.location.split(' ').join('+')}/>
+          </Grid>
+
+      <Grid item xs={12}>
+        <ImageGallery items={images} autoPlay={true}/>
+      </Grid>
+
+       <Grid item xs={12}>
+          <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Restaurants Nearby</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+            RESTAURANTS NEAR!!!!!!
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Flights</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+            FLIGHTS NEARBY
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Hotels</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+            BOOK A HOTEL
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Events</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+            LOOK AT EVENTS
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+          </Grid>
+
+
+        </Grid>
     </div>);
   }
 }
+
 
 export default PicDetailsPage;
