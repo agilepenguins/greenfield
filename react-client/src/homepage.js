@@ -19,6 +19,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import { GridLoader } from 'react-spinners';
 
 
 class Homepage extends React.Component {
@@ -28,6 +29,7 @@ class Homepage extends React.Component {
       labels: ['empty'],
       image_url: '',
       location: '',
+      loading: false,
     };
     this.onChangeURL = this.onChangeURL.bind(this);
     this.onChangeLocation = this.onChangeLocation.bind(this);
@@ -36,10 +38,12 @@ class Homepage extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({ loading: true });
     axios.get('/home')
       .then((response) => {
         this.setState({
           labels: response.data.reverse(),
+          loading: false,
         });
         console.log('finished GETTING from server - clientside');
       })
@@ -66,6 +70,7 @@ class Homepage extends React.Component {
 
   onSubmit() {
     console.log('searching');
+    this.setState({ loading: true });
     let data = { image_url: this.state.image_url, location: this.state.location };
     // basic input validation
     let ext = data.image_url.split('.').slice(-1)[0];
@@ -77,14 +82,28 @@ class Homepage extends React.Component {
           window.location.reload();
         })
         .catch((error) => {
-          console.log('SUBMIT NOT WORKING', error);
+          console.log('Server error: ', error);
+          this.setState({ loading: false });
+          alert('Could not properly detect this image! Please try something else.')
         });
     } else {
+      this.setState({ loading: false });
       alert('Invalid image URL, please try again');
     }
   }
 
   render() {
+    let loaderDiv = this.state.loading ? (
+      <div className='image-loader'>
+        <GridLoader
+          color={'#9B9B9B'}
+          loading={this.state.loading}
+        />
+      </div>
+    ) : (
+      <div></div>
+    );
+
     return (
     <div>
       <AppBar color="default">
@@ -118,6 +137,8 @@ class Homepage extends React.Component {
             </GridListTile>)
           }
         </GridList> */}
+
+        {loaderDiv}
 
         <div className="grid-container">
           {

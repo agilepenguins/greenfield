@@ -1,6 +1,7 @@
 node_modules
 react-client/dist/bundle.js
 react-client/src/config.js
+regextesting.js
 .env
 package-lock.json
 src/config.js
