@@ -73,6 +73,15 @@
   right: 3%;
 }
 
+.image-loader {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
 
 /** THIS IS FOR REACT-GALLERY*/
 
