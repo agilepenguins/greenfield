@@ -8,8 +8,8 @@ let getRestaurantRecommendations = (location, callback) => {
     qs: {
       location,
       categories: 'restaurants',
-      attributes: 'hot_and_new',
-      sort_by: 'distance',
+      // attributes: 'hot_and_new',
+      sort_by: 'rating',
       limit: 10,
     },
     headers:

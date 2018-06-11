@@ -128,7 +128,7 @@ class PicDetailsPage extends React.Component {
        <Grid item xs={12}>
           <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Restaurants Nearby</Typography>
+          <Typography>Top 10 Restaurants Nearby</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
@@ -136,11 +136,11 @@ class PicDetailsPage extends React.Component {
             this.state.yelpData.businesses.map(restaurant =>
             <div className="restaurant-border" key={restaurant.id}>
             <div className="restaurant-top">
-            <div className="restaurant-item"><a href={restaurant.url}><h3>{restaurant.name}</h3></a></div>
+            <div className="restaurant-item"><a style={{ textDecoration: 'none', color: 'black' }} href={restaurant.url}><h3>{restaurant.name}</h3></a></div>
             <div><h3>{restaurant.location.address1}</h3></div>
             </div>
             <div className="restaurant-bottom">
-            <div style={{paddingRight:'10px'}}><img className="restaurant-pic" src={restaurant.image_url}/></div>
+            <div style={{ paddingRight: '10px' }}><a style={{ textDecoration: 'none', color: 'black' }} href={restaurant.url}><img className="restaurant-pic" src={restaurant.image_url}/></a></div>
             <div>
             <div> Category: {restaurant.categories[0].title}</div>
             <div> Phone: {restaurant.display_phone}</div>
