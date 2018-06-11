@@ -16,7 +16,7 @@
   text-align: center;
   top: 18%;
   left: 39%;
-  background-color: #F6F3F375;
+  background-color: rgba(246, 243, 243, 0.80);
 }
 .logo {
   height: 175px;
@@ -73,11 +73,28 @@
 }
 .appBarLogo {
   height: 55px;
-  width: 60px
+  width: 62px
 }
 .belowAppBar {
   padding-top: 4.5%;
-  background-color: rgb(255, 255, 255)
+  background-color: rgb(255, 255, 255);
+  font-family: roboto;
+}
+.appLocation {
+  font-family: roboto;
+}
+.appBarButtons {
+  position: absolute;
+  right: 3%;
+}
+
+.image-loader {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 

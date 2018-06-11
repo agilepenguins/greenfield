@@ -51,6 +51,9 @@ app.post('/submit', (req, res) => {
   cloudVision.getLabels(req.body.image_url)
     .then((cloudResults) => {
       // pull label with the highest detection score
+      if (cloudResults.data.responses.length === 0) {
+        throw new Error('Cloud image results were invalid');
+      }
       imageLabel = cloudResults.data.responses[0].webDetection.webEntities[0].description;
       console.log('Recognized: ', imageLabel);
       return relatedImages.getRelated(imageLabel);

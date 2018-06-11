@@ -3,7 +3,7 @@ import {
   Route,
   NavLink,
   HashRouter,
-  Link
+  Link,
 } from 'react-router-dom';
 import axios from 'axios';
 import EmbeddedMap from './map';
@@ -28,7 +28,7 @@ class PicDetailsPage extends React.Component {
     super(props);
     this.state = {
       id: this.props.match.params.id,
-      userLocation: { latitude: 30.3079827, longitude: -97.8934851 }, // set to Austin, TX for testing
+      userLocation: 'Austin-Bergstrom+International+Airport', // set to Austin, TX for testing
       dbDetails: {
         ID: undefined, labels: undefined, location: 'Loading...', related_images: '[]',
       },
@@ -78,22 +78,9 @@ class PicDetailsPage extends React.Component {
 
   render() {
     const images = JSON.parse(this.state.dbDetails.related_images).map(imgUrl => { return {original:imgUrl, thumbnail:imgUrl};});
-    // const images = [
-    //   {
-    //     original: 'http://tinastraveldeals.co.uk/wp-content/uploads/2018/05/LV1.jpg',
-    //     thumbnail: 'http://tinastraveldeals.co.uk/wp-content/uploads/2018/05/LV1.jpg',
-    //   },
-    //   {
-    //     original: 'https://www.letsgo2.com/blog/wp-content/uploads/2013/09/mgm-grand-las-vegas.jpg',
-    //     thumbnail: 'https://www.letsgo2.com/blog/wp-content/uploads/2013/09/mgm-grand-las-vegas.jpg'
-    //   },
-    //   {
-    //     original: 'http://oneworld.com.lb/cms/wp-content/uploads/2014/09/mgm11.jpg',
-    //     thumbnail: 'http://oneworld.com.lb/cms/wp-content/uploads/2014/09/mgm11.jpg'
-    //   }
-    // ]
 
     return (
+
     <div style={{width: '100%'}}>
       <AppBar color="default">
         <Toolbar>
@@ -106,6 +93,7 @@ class PicDetailsPage extends React.Component {
           </div>
         </Toolbar>
       </AppBar>
+      
         <Grid container spacing={16} alignItems='center'>
 
           <Grid item xs={12}>
@@ -162,6 +150,7 @@ class PicDetailsPage extends React.Component {
 
 
         </Grid>
+        </div>
     </div>);
   }
 }
