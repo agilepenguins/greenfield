@@ -22,16 +22,16 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
 class PicDetailsPage extends React.Component {
-  
-
   constructor(props) {
     super(props);
     this.state = {
       id: this.props.match.params.id,
       userLocation: 'Austin-Bergstrom+International+Airport', // set to Austin, TX for testing
       dbDetails: {
-        ID: undefined, labels: undefined, location: 'Loading...', related_images: '[]',
+        ID: undefined, labels: undefined, location: undefined, related_images: '[]',
       },
+      yelpData: {},
+      yelpLoaded: false,
     };
   }
 
@@ -76,16 +76,34 @@ class PicDetailsPage extends React.Component {
       });
   }
 
+  componentDidUpdate() {
+
+    console.log(this.state.dbDetails.location);
+    if (this.state.dbDetails.location && !this.state.yelpLoaded) {
+      axios.post('yelp', {location: this.state.dbDetails.location })
+        .then((response) => {
+          console.log('Got yelp data: ', response.data);
+          this.setState({
+            yelpData: response.data,
+            yelpLoaded: true,
+          });
+        })
+        .catch((err) => {
+          console.log('ERROR: ', err);
+        });
+    }
+  }
+
   render() {
-    const images = JSON.parse(this.state.dbDetails.related_images).map(imgUrl => { return {original:imgUrl, thumbnail:imgUrl};});
+    const images = JSON.parse(this.state.dbDetails.related_images).map(imgUrl => ({ original: imgUrl, thumbnail: imgUrl }));
 
     return (
 
-    <div style={{width: '100%'}}>
+    <div style={{ width: '100%' }}>
       <AppBar color="default">
         <Toolbar>
           <img className="appBarLogo" src="https://i.imgur.com/Y9EuxAX.png"/>
-          <div style={{ width: '25%' }}><h2>{this.state.dbDetails.location}</h2></div>
+          <div style={{ width: '25%' }}><h2>{this.state.dbDetails.location || 'Loading...'}</h2></div>
           <div style={{ width: '75%', textAlign: 'right' }}>
           <Button color="default"><Link to={'/home'} style={{ textDecoration: 'none' }}>explore</Link></Button>
           <Button color="default"><Link to={'/'} style={{ textDecoration: 'none' }}>Logout</Link></Button>
@@ -93,12 +111,14 @@ class PicDetailsPage extends React.Component {
         </Toolbar>
       </AppBar>
       <div className="belowAppBar">
-      
+
         <Grid container spacing={16} alignItems='center'>
 
           <Grid item xs={12}>
             <EmbeddedMap userLocation={this.state.userLocation}
-            destination={this.state.dbDetails.location.split(' ').join('+')}/>
+            destination={this.state.dbDetails.location ?
+              this.state.dbDetails.location.split(' ').join('+') : ''
+              }/>
           </Grid>
 
       <Grid item xs={12}>
