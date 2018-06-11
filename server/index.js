@@ -28,7 +28,7 @@ app.post('/details', (req, res) => {
   if (!req.body.ID) {
     res.status(400).status('Bad request: invalid image ID');
   }
-  console.log(req.body.ID)
+  console.log(req.body.ID);
   db.selectByID(req.body.ID, (err, data) => {
     if (err) {
       console.log('Error in /home');
@@ -36,6 +36,17 @@ app.post('/details', (req, res) => {
     } else {
       res.status(200).send(data);
     }
+  });
+});
+
+app.post('/yelp', (req, res) => {
+  if (!req.body.location) {
+    res.status(400).send('Invalid location provided to yelp request');
+  }
+  console.log('Searching yelp results: ', req.body);
+  yelpFusion.getRestaurantRecommendations(req.body.location, (body) => {
+    console.log('Yelp Results:', body);
+    res.status(200).send(body);
   });
 });
 
@@ -65,11 +76,6 @@ app.post('/submit', (req, res) => {
       db.save('some labels...', req.body.image_url, imageLabel, JSON.stringify(imageUrls));
     })
     .then(() => {
-      // console.log('searching yelp results');
-      // yelpFusion.getRestaurantRecommendations(imageLabel, (body) => {
-      //   console.log('Yelp Results:', body);
-      //   res.status(200).send(body);
-      // });
       res.status(200).send('Server work done');
     })
     .catch((err) => {
