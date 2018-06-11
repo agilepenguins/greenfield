@@ -103,7 +103,7 @@ class PicDetailsPage extends React.Component {
       <AppBar color="default">
         <Toolbar>
           <img className="appBarLogo" src="https://i.imgur.com/Y9EuxAX.png"/>
-          <div style={{ width: '25%' }}><h2>{this.state.dbDetails.location || 'Loading...'}</h2></div>
+          <div className="locationTitle" style={{ width: '25%' }}><p>{this.state.dbDetails.location || 'Loading...'}</p></div>
           <div style={{ width: '75%', textAlign: 'right' }}>
           <Button color="default"><Link to={'/home'} style={{ textDecoration: 'none' }}>explore</Link></Button>
           <Button color="default"><Link to={'/'} style={{ textDecoration: 'none' }}>Logout</Link></Button>
