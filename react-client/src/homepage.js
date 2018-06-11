@@ -43,7 +43,7 @@ class Homepage extends React.Component {
     axios.get('/home')
       .then((response) => {
         this.setState({
-          labels: response.data.reverse(),
+          labels: response.data,
           loading: false,
         });
         console.log('finished GETTING from server - clientside');
