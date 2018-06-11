@@ -43,7 +43,7 @@ app.post('/yelp', (req, res) => {
   if (!req.body.location) {
     res.status(400).send('Invalid location provided to yelp request');
   }
-  console.log('Searching yelp results: ', req.body);
+  console.log('Searching yelp results: ', req.body.location);
   yelpFusion.getRestaurantRecommendations(req.body.location, (body) => {
     console.log('Yelp Results:', body);
     res.status(200).send(body);
