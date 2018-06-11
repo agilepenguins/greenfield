@@ -8,7 +8,7 @@ const sequelize = new Sequelize(
   process.env.MYSQL_PASSWORD, {
     dialect: 'mysql',
     define: {
-      timestamps: false,
+      timestamps: true,
     },
     host: process.env.MYSQL_HOST,
   },
@@ -44,7 +44,8 @@ const Picture = sequelize.define('picture', {
 });
 
 let selectAll = (callback) => {
-  Picture.findAll()
+  Picture.findAll({
+    limit: 20, order: [['updatedAt', 'DESC']] })
     .then((results) => {
       callback(null, results);
     })
