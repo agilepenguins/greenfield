@@ -20,6 +20,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { GridLoader } from 'react-spinners';
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 class Homepage extends React.Component {
@@ -84,7 +85,7 @@ class Homepage extends React.Component {
         .catch((error) => {
           console.log('Server error: ', error);
           this.setState({ loading: false });
-          alert('Could not properly detect this image! Please try something else.')
+          alert('Could not properly detect this image! Please try something else.');
         });
     } else {
       this.setState({ loading: false });
@@ -113,8 +114,8 @@ class Homepage extends React.Component {
            onKeyPress={this.handleKeyPress} color="inherit" placeholder="Search Image URL" fullWidth>
            </TextField>
           <Button onClick={this.onSubmit} color="inherit">Search</Button>
-          <Button color="default"><Link to={'/home'} style={{ textDecoration: 'none'}}>explore</Link></Button>
-          <Button color="default"><Link to={'/'} style={{ textDecoration: 'none'}}>Logout</Link></Button>
+          <Button color="default"><Link to={'/home'} style={{ textDecoration: 'none' }}>explore</Link></Button>
+          <Button color="default"><Link to={'/'} style={{ textDecoration: 'none' }}>Logout</Link></Button>
         </Toolbar>
       </AppBar>
       <div className="belowAppBar">

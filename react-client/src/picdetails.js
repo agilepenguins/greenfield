@@ -30,7 +30,7 @@ class PicDetailsPage extends React.Component {
       dbDetails: {
         ID: undefined, labels: undefined, location: undefined, related_images: '[]',
       },
-      yelpData: {},
+      yelpData: {businesses:[]},
       yelpLoaded: false,
     };
   }
@@ -132,7 +132,25 @@ class PicDetailsPage extends React.Component {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            RESTAURANTS NEAR!!!!!!
+          {
+            this.state.yelpData.businesses.map(restaurant =>
+            <div className="restaurant-border" key={restaurant.id}>
+            <div className="restaurant-top">
+            <div className="restaurant-item"><a href={restaurant.url}><h3>{restaurant.name}</h3></a></div>
+            <div><h3>{restaurant.location.address1}</h3></div>
+            </div>
+            <div className="restaurant-bottom">
+            <div style={{paddingRight:'10px'}}><img className="restaurant-pic" src={restaurant.image_url}/></div>
+            <div>
+            <div> Category: {restaurant.categories[0].title}</div>
+            <div> Phone: {restaurant.display_phone}</div>
+            <div> Rating (out of 5 stars): {restaurant.rating}</div>
+            <div> Price: {restaurant.price}</div>
+            </div>
+            </div>
+
+            </div>)
+          }
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -152,7 +170,7 @@ class PicDetailsPage extends React.Component {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            BOOK A HOTEL
+            BOOK A HOTELBOOK A HOTELBOOK A HOTELBOOK A HOTELBOOK A HOTELBOOK A HOTELBOOK A HOTELBOOK A HOTELBOOK A HOTELBOOK A HOTEL
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>

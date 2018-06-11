@@ -32,10 +32,32 @@
 .linebreak {
   width: 205px
 }
+.restaurant-top {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+.restaurant-bottom {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.retaurant-item {
+  width: 32%;
+  text-align: center;
+}
+.restaurant-pic {
+  height: 100px;
+}
 .or {
   font-family: roboto;
   font-weight: 125;
   font-size: small
+}
+.restaurant-border {
+  border-bottom: 1px solid;
+  width: 800px;
+  margin: 20px;
+  padding: 10px;
 }
 .grid-container {
   column-count: 4;
