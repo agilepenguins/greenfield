@@ -1,6 +1,5 @@
 const request = require('request');
-const config = require('../config.js');
-const yelp = require('yelp-fusion');
+require('dotenv').config();
 
 let getRestaurantRecommendations = (location, callback) => {
   const options = {
