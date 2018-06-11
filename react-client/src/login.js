@@ -59,7 +59,7 @@ class Login extends React.Component {
         <hr className="linebreak"/>
         <div className="or">or</div>
         <Button className="google">placeholder</Button><br/>
-        <Button className="facebook">placeholder</Button><br/>
+        {/* <Button className="facebook">placeholder</Button><br/> */}
       </div>
     </div>);
   }

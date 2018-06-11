@@ -26,6 +26,11 @@
 .username, .password, .loginbutton, .signupbutton, .google, .facebook {
   font-family: roboto;
 }
+.locationTitle {
+  font-family: roboto;
+  font-weight: 500;
+  font-size: large
+}
 .username {
   margin-top: 10px;
 }

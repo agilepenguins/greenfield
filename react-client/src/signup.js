@@ -54,7 +54,7 @@ class Signup extends React.Component {
         <img className="logo" src="https://i.imgur.com/Y9EuxAX.png"/><br/>
         <TextField className="username" onChange={this.onChangeUsername} placeholder="Username"></TextField><br/>
         <TextField className="password" onChange={this.onChangePassword} placeholder="Password"></TextField><br/>
-        <Link to="/home"><Button className="signupbutton" onClick={this.onSubmitSignup}>SIGN UP</Button></Link>
+        <Link to="/home" style={{ textDecoration: 'none' }}><Button className="signupbutton" onClick={this.onSubmitSignup}>SIGN UP</Button></Link>
       </div>
     </div>);
   }
