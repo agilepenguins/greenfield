@@ -87,12 +87,12 @@ class PicDetailsPage extends React.Component {
           <img className="appBarLogo" src="https://i.imgur.com/Y9EuxAX.png"/>
           <div style={{ width: '25%' }}><h2>{this.state.dbDetails.location}</h2></div>
           <div style={{ width: '75%', textAlign: 'right' }}>
-          <Button color="inherit"><Link to={`/home/`} style={{ textDecoration: 'none'}}>explore</Link></Button>
-          <Button color="inherit"><Link to={`/home/`} style={{ textDecoration: 'none'}}>home</Link></Button>
-          <Button color="inherit"><Link to={`/`} style={{ textDecoration: 'none'}}>Logout</Link></Button>
+          <Button color="default"><Link to={'/home'} style={{ textDecoration: 'none' }}>explore</Link></Button>
+          <Button color="default"><Link to={'/'} style={{ textDecoration: 'none' }}>Logout</Link></Button>
           </div>
         </Toolbar>
       </AppBar>
+      <div className="belowAppBar">
       
         <Grid container spacing={16} alignItems='center'>
 
@@ -150,6 +150,7 @@ class PicDetailsPage extends React.Component {
 
 
         </Grid>
+    </div>
     </div>);
   }
 }
