@@ -7,8 +7,10 @@ let getRestaurantRecommendations = (location, callback) => {
     url: 'https://api.yelp.com/v3/businesses/search',
     qs: {
       location,
+      categories: 'restaurants',
+      attributes: 'hot_and_new',
       sort_by: 'distance',
-      limit: 5,
+      limit: 10,
     },
     headers:
       {
