@@ -81,9 +81,9 @@ class Homepage extends React.Component {
           <img className="appBarLogo" src="https://i.imgur.com/Y9EuxAX.png"/>
           <TextField className="searchfield" onChange={this.onChangeURL} color="inherit" placeholder="Search Image URL" fullWidth></TextField>
           <Button onClick={this.onSubmit} color="inherit">Search</Button>
-          <Button color="inherit">explore</Button>
-          <Button color="inherit">home</Button>
-          <Button color="inherit">Logout</Button>
+          <Button color="inherit"><Link to={`/home/`} style={{ textDecoration: 'none'}}>explore</Link></Button>
+          <Button color="inherit"><Link to={`/home/`} style={{ textDecoration: 'none'}}>home</Link></Button>
+          <Button color="inherit"><Link to={`/`} style={{ textDecoration: 'none'}}>Logout</Link></Button>
         </Toolbar>
       </AppBar>
       <div className="belowAppBar">

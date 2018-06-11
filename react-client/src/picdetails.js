@@ -3,6 +3,7 @@ import {
   Route,
   NavLink,
   HashRouter,
+  Link
 } from 'react-router-dom';
 import axios from 'axios';
 import EmbeddedMap from './map';
@@ -15,10 +16,10 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ImageGallery from 'react-image-gallery';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
 
 class PicDetailsPage extends React.Component {
   
@@ -94,7 +95,17 @@ class PicDetailsPage extends React.Component {
 
     return (
     <div style={{width: '100%'}}>
-      <h1>{this.state.dbDetails.location}</h1>
+      <AppBar color="default">
+        <Toolbar>
+          <img className="appBarLogo" src="https://i.imgur.com/Y9EuxAX.png"/>
+          <div style={{ width: '25%' }}><h2>{this.state.dbDetails.location}</h2></div>
+          <div style={{ width: '75%', textAlign: 'right' }}>
+          <Button color="inherit"><Link to={`/home/`} style={{ textDecoration: 'none'}}>explore</Link></Button>
+          <Button color="inherit"><Link to={`/home/`} style={{ textDecoration: 'none'}}>home</Link></Button>
+          <Button color="inherit"><Link to={`/`} style={{ textDecoration: 'none'}}>Logout</Link></Button>
+          </div>
+        </Toolbar>
+      </AppBar>
         <Grid container spacing={16} alignItems='center'>
 
           <Grid item xs={12}>
