@@ -18,27 +18,36 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  Wanderlust
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  For the inspired traveler.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  Give us an image of somewhere, and we'll confirm the location and curate vacation inspiration for you.
 
 ## Problem ##
   > Describe the problem your product solves.
+  If the user finds only one picture of a location and wants to know more about it.
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  We recognize the location from the picture and return relevant data.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  "It's pretty good man..." -Trevor
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  Just go to the website and paste in an image link.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "THESE PICTURES ARE AMAZEBALLS!" -A hypothetical user
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  Go explore!
