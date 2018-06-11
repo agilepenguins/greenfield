@@ -54,8 +54,8 @@ class Login extends React.Component {
         <img className="logo" src="https://i.imgur.com/Y9EuxAX.png"/><br/>
         <TextField className="username" onChange={this.onChangeUsername} placeholder="Username"></TextField><br/>
         <TextField className="password" onChange={this.onChangePassword} placeholder="Password"></TextField><br/>
-        <Link to="/home"><Button className="loginbutton" onClick={this.onSubmitLogin}>LOGIN</Button></Link><br/>
-        <Link to="/signup"><Button className="signupbutton" onClick={this.onSubmitSignup}>SIGN UP</Button></Link><br/>
+        <Link to="/home" style={{ textDecoration: 'none' }}><Button className="loginbutton" onClick={this.onSubmitLogin}>LOGIN</Button></Link><br/>
+        <Link to="/signup" style={{ textDecoration: 'none' }}><Button className="signupbutton" onClick={this.onSubmitSignup}>SIGN UP</Button></Link><br/>
         <hr className="linebreak"/>
         <div className="or">or</div>
         <Button className="google">placeholder</Button><br/>

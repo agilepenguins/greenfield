@@ -97,6 +97,10 @@
   margin: auto;
 }
 
+:visited {
+  color: black;
+}
+
 
 /** THIS IS FOR REACT-GALLERY*/
 
