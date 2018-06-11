@@ -16,12 +16,9 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ImageGallery from 'react-image-gallery';
 import AppBar from '@material-ui/core/AppBar';
-import { Toolbar } from '@material-ui/core';
+import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
 class PicDetailsPage extends React.Component {
@@ -83,19 +80,20 @@ class PicDetailsPage extends React.Component {
     const images = JSON.parse(this.state.dbDetails.related_images).map(imgUrl => { return {original:imgUrl, thumbnail:imgUrl};});
 
     return (
-    <div style={{ width: '100%' }}>
+
+    <div style={{width: '100%'}}>
       <AppBar color="default">
-      <Toolbar>
-        <img className="appBarLogo" src="https://i.imgur.com/Y9EuxAX.png"/>
-        <p className="appLocation">{this.state.dbDetails.location}</p>
-        <div className="appBarButtons">
-          <Link to="/home"><Button color="default">explore</Button></Link>
-          <Link to="/"><Button color="default">Logout</Button></Link>
-        </div>
-      </Toolbar>
+        <Toolbar>
+          <img className="appBarLogo" src="https://i.imgur.com/Y9EuxAX.png"/>
+          <div style={{ width: '25%' }}><h2>{this.state.dbDetails.location}</h2></div>
+          <div style={{ width: '75%', textAlign: 'right' }}>
+          <Button color="inherit"><Link to={`/home/`} style={{ textDecoration: 'none'}}>explore</Link></Button>
+          <Button color="inherit"><Link to={`/home/`} style={{ textDecoration: 'none'}}>home</Link></Button>
+          <Button color="inherit"><Link to={`/`} style={{ textDecoration: 'none'}}>Logout</Link></Button>
+          </div>
+        </Toolbar>
       </AppBar>
-      <div className="belowAppBar">
-      {/* <h1>{this.state.dbDetails.location}</h1> */}
+      
         <Grid container spacing={16} alignItems='center'>
 
           <Grid item xs={12}>

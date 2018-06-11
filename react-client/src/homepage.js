@@ -113,8 +113,9 @@ class Homepage extends React.Component {
            onKeyPress={this.handleKeyPress} color="inherit" placeholder="Search Image URL" fullWidth>
            </TextField>
           <Button onClick={this.onSubmit} color="inherit">Search</Button>
-          <Link to="/home"><Button color="default">explore</Button></Link>
-          <Link to="/"><Button color="default">Logout</Button></Link>
+          <Button color="inherit"><Link to={`/home/`} style={{ textDecoration: 'none'}}>explore</Link></Button>
+          <Button color="inherit"><Link to={`/home/`} style={{ textDecoration: 'none'}}>home</Link></Button>
+          <Button color="inherit"><Link to={`/`} style={{ textDecoration: 'none'}}>Logout</Link></Button>
         </Toolbar>
       </AppBar>
       <div className="belowAppBar">
