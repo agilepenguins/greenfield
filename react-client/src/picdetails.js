@@ -150,7 +150,6 @@ class PicDetailsPage extends React.Component {
 
 
         </Grid>
-        </div>
     </div>);
   }
 }
