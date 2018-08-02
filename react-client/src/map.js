@@ -9,7 +9,7 @@ const EmbeddedMap = props => (
         height="675"
         frameBorder="0" style={{ border: '0' }}
         allowFullScreen
-        src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyClraEaSKG4qizv17re3duccjC_TT6Hetk
+        src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyDtxJXKCgTYe8QaW-YJBbWxy_3YYGBQGCM
         &origin=${props.userLocation}
         &destination=${props.destination}
         &mode=flying`} >
